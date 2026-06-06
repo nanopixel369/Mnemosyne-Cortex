@@ -1,4 +1,4 @@
-name: CI/CD Guardrail
+name: CI
 
 on:
   push:
@@ -6,27 +6,35 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-  test-and-verify:
+  test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
 
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun Runtime
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.10
 
-      - name: Install Project Dependencies
+      - name: Install dependencies
         run: bun install
 
-      # Force the cloud environment to run these commands exactly where the files live
-      - name: Hydrate Heavy Binary via Release CDN
-        run: bun run bootstrap
-        working-directory: .
+      - name: Download KD-Tree binary
+        run: bun run bin/bootstrap.ts
 
-      - name: Execute Core Test Suites
-        run: bun run test
-        working-directory: .
+      - name: Verify KD-Tree binary exists
+        run: |
+          ls -lh kdtree_cielab.bin
+          echo "CWD: $(pwd)"
+
+      - name: Run tests
+        run: bun test
