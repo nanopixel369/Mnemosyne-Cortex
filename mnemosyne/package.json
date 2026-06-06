@@ -1,0 +1,17 @@
+{
+  "name": "@mnemosyne/cortex",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Mnemosyne Cortex — persistent semantic memory application built on ChromaCore",
+  "scripts": {
+    "mcp": "bun run mcp/server.ts",
+    "dev": "bun run src/main.ts"
+  },
+  "dependencies": {
+    "@mnemosyne/chromacore": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

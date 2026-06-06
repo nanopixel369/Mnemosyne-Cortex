@@ -1,25 +1,25 @@
-# Git ignore file for Mnemosyne Cortex / ChromaCore project
+# Mnemosyne-Cortex .gitignore
 
-# Personal notes — never commit
+# Personal notes
 personal/
 
-# ChromaCore runtime databases (user data)
+# ChromaCore runtime databases
 *.db
 *.db-shm
 *.db-wal
 
+# KD-Tree binary (downloaded at runtime via bootstrap)
+chromacore/kdtree_cielab.bin
+
 # Memory storage (user data)
-meridian-glyph/membloks/
-meridian-glyph/test_storage/
+mnemosyne/adapters/claude-desktop/membloks/
+skills/meridian-glyph/membloks/
 
 # Logs
-meridian-glyph/scripts/*.jsonl
-meridian-glyph/scripts/watcher_log.jsonl
-meridian-glyph/scripts/author_log.jsonl
-meridian-glyph/scripts/nav_log.jsonl
+*.jsonl
 
-# Session state (per-user, not repo)
-meridian-glyph/workflow.json
+# Skill session state (per-user)
+skills/meridian-glyph/workflow.json
 
 # Python cache
 __pycache__/
@@ -29,14 +29,6 @@ __pycache__/
 # Node / Bun
 node_modules/
 bun.lockb
-
-# ChromaCore scan artifacts (generated at runtime)
-ChromaCompressor/chroma_freq_report.json
-ChromaCompressor/vault_*.json
-ChromaCompressor/full_drive_report.json
-
-# Test artifacts
-meridian-glyph/scripts/test_storage/
 
 # OS
 .DS_Store
@@ -48,9 +40,7 @@ desktop.ini
 .idea/
 *.swp
 
-# Environment / secrets
+# Secrets
 .env
 .env.*
 config.local.json
-
-kdtree_cielab.bin

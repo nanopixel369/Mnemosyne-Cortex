@@ -1,16 +1,15 @@
 {
-  "name": "chromacore",
-  "version": "3.0.0",
+  "name": "mnemosyne-cortex",
+  "version": "0.1.0",
+  "private": true,
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
+  "workspaces": [
+    "chromacore",
+    "mnemosyne"
+  ],
   "scripts": {
-    "generate-artifacts": "bun run bin/generate_artifacts.ts",
-    "bootstrap": "bun run bin/bootstrap.ts",
-    "test": "bun test"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0"
+    "test": "bun test --cwd chromacore",
+    "test:chromacore": "bun test --cwd chromacore",
+    "bootstrap": "bun run chromacore/bin/bootstrap.ts"
   }
 }

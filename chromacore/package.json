@@ -1,0 +1,16 @@
+{
+  "name": "@mnemosyne/chromacore",
+  "version": "3.0.0",
+  "type": "module",
+  "description": "CPU-based semantic storage engine using L*a*b* color space coordinates",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "bun test",
+    "generate-artifacts": "bun run bin/generate_artifacts.ts",
+    "generate-presets": "bun run bin/generate_presets.ts",
+    "bootstrap": "bun run bin/bootstrap.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
