@@ -1,0 +1,15 @@
+{
+  "name": "chromacore",
+  "version": "3.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "scripts": {
+    "generate-artifacts": "bun run bin/generate_artifacts.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  }
+}

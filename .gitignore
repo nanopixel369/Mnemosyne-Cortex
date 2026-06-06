@@ -1,0 +1,55 @@
+# Git ignore file for Mnemosyne Cortex / ChromaCore project
+
+# Personal notes — never commit
+personal/
+
+# ChromaCore runtime databases (user data)
+*.db
+*.db-shm
+*.db-wal
+
+# Memory storage (user data)
+meridian-glyph/membloks/
+meridian-glyph/test_storage/
+
+# Logs
+meridian-glyph/scripts/*.jsonl
+meridian-glyph/scripts/watcher_log.jsonl
+meridian-glyph/scripts/author_log.jsonl
+meridian-glyph/scripts/nav_log.jsonl
+
+# Session state (per-user, not repo)
+meridian-glyph/workflow.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node / Bun
+node_modules/
+bun.lockb
+
+# ChromaCore scan artifacts (generated at runtime)
+ChromaCompressor/chroma_freq_report.json
+ChromaCompressor/vault_*.json
+ChromaCompressor/full_drive_report.json
+
+# Test artifacts
+meridian-glyph/scripts/test_storage/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+config.local.json
+kdtree_cielab.bin
