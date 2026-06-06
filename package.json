@@ -7,7 +7,7 @@
   },
   "scripts": {
     "generate-artifacts": "bun run bin/generate_artifacts.ts",
-    "bootstrap": "chmod +x bootstrap.sh && ./bootstrap.sh",
+    "bootstrap": "bun run bin/bootstrap.ts",
     "test": "bun test"
   },
   "dependencies": {
