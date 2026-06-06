@@ -22,8 +22,11 @@ jobs:
       - name: Install Project Dependencies
         run: bun install
 
+      # Force the cloud environment to run these commands exactly where the files live
       - name: Hydrate Heavy Binary via Release CDN
         run: bun run bootstrap
+        working-directory: .
 
       - name: Execute Core Test Suites
         run: bun run test
+        working-directory: .
