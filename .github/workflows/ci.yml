@@ -1,0 +1,29 @@
+name: CI/CD Guardrail
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun Runtime
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Project Dependencies
+        run: bun install
+
+      - name: Hydrate Heavy Binary via Release CDN
+        run: bun run bootstrap
+
+      - name: Execute Core Test Suites
+        run: bun run test
