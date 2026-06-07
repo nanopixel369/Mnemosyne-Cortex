@@ -10,7 +10,8 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  test:
+  test-chromacore:
+    name: ChromaCore Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -22,11 +23,12 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install dependencies
+      - name: Install ChromaCore dependencies
         run: bun install --no-save
+        working-directory: ${{ github.workspace }}/chromacore
 
       - name: Download KD-Tree binary
-        run: bun run chromacore/bin/bootstrap.ts
+        run: bun run bin/bootstrap.ts
         working-directory: ${{ github.workspace }}/chromacore
 
       - name: Verify KD-Tree binary
@@ -36,3 +38,24 @@ jobs:
       - name: Run ChromaCore tests
         run: bun test
         working-directory: ${{ github.workspace }}/chromacore
+
+  test-mcp-tools:
+    name: MCP Tools Smoke Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Mnemosyne dependencies
+        run: bun install --no-save
+        working-directory: ${{ github.workspace }}/mnemosyne
+
+      - name: Run MCP tool smoke tests
+        run: bun run mcp/test_tools.ts
+        working-directory: ${{ github.workspace }}/mnemosyne
